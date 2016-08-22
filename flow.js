@@ -3,7 +3,7 @@ var breathingSequence = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 
 var beatsPerMinute = 72; // heartrate
-var breathsPerMinute = 13; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
+var breathsPerMinute = 10; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
 var timePerBreath = (60000 / breathsPerMinute);
 var timePerPulse = (60000 / beatsPerMinute);
 var delay = Math.floor (timePerBreath / breathingSequence.length);
@@ -14,8 +14,8 @@ var delayPerPulse3 = timePerPulse / 15;
 var currentColor = {
     h: 30,
     s: 80,
-    l: 60,
-    a: 0
+    l: 40,
+    a: 0.3
 };
 var saturation = currentColor.s;
 var lightness = currentColor.l;
@@ -24,8 +24,18 @@ var opacity = currentColor.a;
 var opacitySequence =[];
 var saturationSequence = [];
 
+var flowDepth = $(function(){
+	$('.slider').on('input',function () {
+        flowDepth = (this.value);
+        $("#felow-depth").html(this.value);
+        
+  });
+});
+
 var breathScale = 1;
-var pulseScale = 1;
+var pulseScale = 1
+
+
 
 function makeOpacitySequence() {
     for (var i=0; i< breathingSequence.length; i++){
@@ -146,6 +156,6 @@ breather.innerHTML ='<!--This is an element that contains all the html for the s
                 right:-10%;\
                 width:120%;\
                 height: 120%;\
-                opacity:0.2;">';
+                opacity:0.3;">';
                 
                 
