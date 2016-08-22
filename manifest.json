@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
 
   "name": "AFLOW",
   "description": "This extension makes the webpage breathe",
@@ -8,13 +8,14 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "css": ["styles.css"],
-      "js": ["jquery.js" , "flow.js"]
+      "js": ["jquery.js" , "flow.js" , "popup.js"]
     }
   ],
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_behaviour": "popup.js"
 
   },
   "permissions": [
