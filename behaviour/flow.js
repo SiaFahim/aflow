@@ -3,7 +3,7 @@ var breathingSequence = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 
 var beatsPerMinute = 72; // heartrate
-var breathsPerMinute = 17; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
+var breathsPerMinute = 13; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
 var timePerBreath = (60000 / breathsPerMinute);
 var timePerPulse = (60000 / beatsPerMinute);
 var delay = Math.floor (timePerBreath / breathingSequence.length);
