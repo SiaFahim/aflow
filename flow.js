@@ -1,7 +1,5 @@
 var breathingSequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
-
 var beatsPerMinute = 72; // heartrate
 var breathsPerMinute = 13; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
 var timePerBreath = (60000 / breathsPerMinute);
@@ -21,17 +19,21 @@ var lightness = currentColor.l;
 var opacity = currentColor.a;
 var opacitySequence = [];
 var saturationSequence = [];
+<<<<<<< HEAD
 var dof;
 if (!dof) dof = 3;
 var breathScale = dof; //changes between 0 to 10
+=======
+//var breathScale = dof; //changes between 0 to 10
+>>>>>>> 77c0f4ec6fbefe56ff29124fcc27cd1cbf58746d
 var pulseScale = 0.5;
 
-function makeOpacitySequence() {
+function makeOpacitySequence(dof) {
+    if (!dof) dof = 1;
     for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + breathingSequence[i] / 100 * breathScale / 10;
+        opacity = opacity + (breathingSequence[i] / 100) * (dof / 10);
         opacitySequence[i] = opacity;
     }
-    return opacitySequence;
 }
 
 $(function() {
@@ -42,10 +44,17 @@ $(function() {
 
 $(function() {
     $('.slider').on('change', function() {
+<<<<<<< HEAD
         dof = this.value;
         makeOpacitySequence()
         $.getScript("./flow.js");
         console.log(dof);
+=======
+        var dof = Number(this.value);
+        makeOpacitySequence(dof);
+        //$.getScript("./flow.js");
+        //breathe();
+>>>>>>> 77c0f4ec6fbefe56ff29124fcc27cd1cbf58746d
     });
 });
 
@@ -60,7 +69,6 @@ function breathe(curdex) {
         currentColor.l + '%,' +
         currentColor.a + ')';
     $('#mainBreather').css('background-color', hslaString);
-
     curdex++;
     setTimeout(function() {
         breathe(curdex);
