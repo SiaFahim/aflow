@@ -10,34 +10,44 @@ var delay = Math.floor(timePerBreath / breathingSequence.length);
 var delayPerPulse1 = timePerPulse / 15;
 var delayPerPulse2 = timePerPulse / 60;
 var delayPerPulse3 = timePerPulse / 15;
-
 var currentColor = {
-    h: 200,
-    s: 80,
-    l: 75,
-    a: 0.1
+    h: 23,
+    s: 70,
+    l: 50,
+    a: 0 //min opacity that the mainBreather could have
 };
 var saturation = currentColor.s;
 var lightness = currentColor.l;
 var opacity = currentColor.a;
-
 var opacitySequence = [];
 var saturationSequence = [];
-
-
-
-var breathScale = 1.5;
-var pulseScale = 2;
-
-
+var dof;
+if (!dof) dof = 3;
+var breathScale = 2; //changes between 0 to 10
+var pulseScale = 1.5;
 
 function makeOpacitySequence() {
     for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + breathingSequence[i] / 100 * breathScale;
+        opacity = opacity + breathingSequence[i] / 100 * breathScale / 10;
         opacitySequence[i] = opacity;
     }
     return opacitySequence;
 }
+
+$(function() {
+    $('.slider').on('input', function() {
+        $("#dof").html(this.value);
+    });
+});
+
+$(function() {
+    $('.slider').on('change', function() {
+        dof = this.value;
+        makeOpacitySequence(dof)
+        $.getScript("./flow.js");
+        console.log(dof);
+    });
+});
 
 function breathe(curdex) {
     if (!curdex) curdex = 0;
@@ -49,7 +59,8 @@ function breathe(curdex) {
         currentColor.s + '%,' +
         currentColor.l + '%,' +
         currentColor.a + ')';
-    $('#mainbreather').css('background-color', hslaString);
+    $('#mainBreather').css('background-color', hslaString);
+
     curdex++;
     setTimeout(function() {
         breathe(curdex);
@@ -96,7 +107,7 @@ function doHeartbeat(curdex) {
             currentColor.s + '%,' +
             currentColor.l + '%,' +
             currentColor.a + ')';
-        $('#mainbreather').css('background-color', hslaString);
+        $('#mainBreather').css('background-color', hslaString);
         curdex++;
         setTimeout(function() {
             doHeartbeat(curdex);
@@ -136,9 +147,9 @@ var $$ = function(e) { //my little custom element-fetching function
 var breather = $$("breather") || document.createElement('breather');
 html.insertBefore(breather, html.firstChild);
 breather.innerHTML = '<!--This is an element that contains all the html for the screen shader extension to work-->' +
-    '<div id="mainbreather" style="\
-                -webkit-transition:opacity 0.1s;\
-                transition:opacity 0.1s;\
+    '<div id="mainBreather" style="\
+                -webkit-transition:opacity 0.01s;\
+                transition:opacity 0.01s;\
                 z-index:2147483647;\
                 background-image: none;\
                 margin: 0px;\
@@ -149,5 +160,4 @@ breather.innerHTML = '<!--This is an element that contains all the html for the 
                 top:-10%;\
                 right:-10%;\
                 width:120%;\
-                height: 120%;\
-                opacity:0.2;"></div>';
+                height: 120%;"></div>';
