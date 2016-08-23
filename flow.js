@@ -23,8 +23,8 @@ var opacitySequence = [];
 var saturationSequence = [];
 var dof;
 if (!dof) dof = 3;
-var breathScale = 2; //changes between 0 to 10
-var pulseScale = 1.5;
+var breathScale = dof; //changes between 0 to 10
+var pulseScale = 0.5;
 
 function makeOpacitySequence() {
     for (var i = 0; i < breathingSequence.length; i++) {
