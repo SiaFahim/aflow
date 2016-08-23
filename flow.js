@@ -13,8 +13,8 @@ var delayPerPulse3 = timePerPulse / 15;
 var currentColor = {
     h: 23,
     s: 70,
-    l: 50,
-    a: 0 //min opacity that the mainBreather could have
+    l: 40,
+    a: 0.3 //min opacity that the mainBreather could have
 };
 var saturation = currentColor.s;
 var lightness = currentColor.l;
@@ -23,8 +23,8 @@ var opacitySequence = [];
 var saturationSequence = [];
 var dof;
 if (!dof) dof = 3;
-var breathScale = 2; //changes between 0 to 10
-var pulseScale = 1.5;
+var breathScale = 3; //changes between 0 to 10
+var pulseScale = 0.5;
 
 function makeOpacitySequence() {
     for (var i = 0; i < breathingSequence.length; i++) {
@@ -43,7 +43,7 @@ $(function() {
 $(function() {
     $('.slider').on('change', function() {
         dof = this.value;
-        makeOpacitySequence(dof)
+        makeOpacitySequence()
         $.getScript("./flow.js");
         console.log(dof);
     });
