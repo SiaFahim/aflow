@@ -1,31 +1,35 @@
 var breathingSequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
-var beatsPerMinute = 72; // heartrate
-var breathsPerMinute = 13; //Math.floor(beatsPerMinute / 5); // breathing rate per minute
+var pulsePerMinute = 72; // heartrate
+var breathsPerMinute = 13; //Math.floor pulsePerMinute / 5); // breathing rate per minute
 var timePerBreath = (60000 / breathsPerMinute);
-var timePerPulse = (60000 / beatsPerMinute);
+var timePerPulse = (60000 / pulsePerMinute);
 var delay = Math.floor(timePerBreath / breathingSequence.length);
 var delayPerPulse1 = timePerPulse / 15;
 var delayPerPulse2 = timePerPulse / 60;
 var delayPerPulse3 = timePerPulse / 15;
-var currentColor = {
+
+var flowMode = {
     h: 23,
     s: 70,
     l: 50,
-    a: 0 //min opacity that the mainBreather could have
-};
-var saturation = currentColor.s;
-var lightness = currentColor.l;
-var opacity = currentColor.a;
+    a: 0,
+    dob: 3,
+    dop: 2,
+    bpm: 72,
+    ppm: 13
+}
+
+var saturation = flowMode.s;
+var lightness = flowMode.l;
+var opacity = flowMode.a;
+
 var opacitySequence = [];
 var saturationSequence = [];
-//var breathScale = dof; //changes between 0 to 10
-var pulseScale = 0.5;
 
-function makeOpacitySequence(dof) {
-    if (!dof) dof = 1;
+function makeOpacitySequence() {
     for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + (breathingSequence[i] / 100) * (dof / 10);
+        opacity = opacity + (breathingSequence[i] / 100) * (flowMode.dob / 10);
         opacitySequence[i] = opacity;
     }
 }
@@ -49,12 +53,12 @@ function breathe(curdex) {
     if (!curdex) curdex = 0;
     if (curdex >= breathingSequence.length) { curdex = 0; }
     var opac = opacitySequence[curdex];
-    currentColor.a = opac;
+    flowMode.a = opac;
     var hslaString = 'hsla(' +
-        currentColor.h + ', ' +
-        currentColor.s + '%,' +
-        currentColor.l + '%,' +
-        currentColor.a + ')';
+        flowMode.h + ', ' +
+        flowMode.s + '%,' +
+        flowMode.l + '%,' +
+        flowMode.a + ')';
     $('#mainBreather').css('background-color', hslaString);
     curdex++;
     setTimeout(function() {
@@ -67,7 +71,7 @@ function breathe(curdex) {
 function makesaturationSequence() {
     var i;
     for (i = 0; i < 30; i++) {
-        saturation = saturation - heartBeatSequence[i] * pulseScale;
+        saturation = saturation + heartBeatSequence[i] * flowMode.dop;
         saturationSequence[i] = saturation;
     }
     return saturationSequence;
@@ -96,12 +100,12 @@ function doHeartbeat(curdex) {
     var sat = saturationSequence[curdex];
     var delay = getHeartbeatDelay(curdex);
     if (sat) {
-        currentColor.s = sat;
+        flowMode.s = sat;
         var hslaString = 'hsla(' +
-            currentColor.h + ', ' +
-            currentColor.s + '%,' +
-            currentColor.l + '%,' +
-            currentColor.a + ')';
+            flowMode.h + ', ' +
+            flowMode.s + '%,' +
+            flowMode.l + '%,' +
+            flowMode.a + ')';
         $('#mainBreather').css('background-color', hslaString);
         curdex++;
         setTimeout(function() {
