@@ -14,7 +14,7 @@ var currentColor = {
     h: 23,
     s: 70,
     l: 40,
-    a: 0.3 //min opacity that the mainBreather could have
+    a: 0 //min opacity that the mainBreather could have
 };
 var saturation = currentColor.s;
 var lightness = currentColor.l;
@@ -23,7 +23,7 @@ var opacitySequence = [];
 var saturationSequence = [];
 var dof;
 if (!dof) dof = 3;
-var breathScale = 3; //changes between 0 to 10
+var breathScale = dof; //changes between 0 to 10
 var pulseScale = 0.5;
 
 function makeOpacitySequence() {
