@@ -1,9 +1,11 @@
-var flowDepth;
-
-$(function(){
-	$('#s1').on('input',function () {
+$(function() {
+    $('.slider').on('input', function() {
         $("#dof").html(this.value);
-        var myval = this.value;
-        flowDepth = myval;   
-  });
+    });
+});
+
+var myval = $(function() {
+    $('.slider').on('change', function() {
+        myval = this.value;
+    });
 });
