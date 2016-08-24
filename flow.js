@@ -27,6 +27,10 @@ var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
+function getMode() {
+
+}
+
 function makeOpacitySequence() {
     for (var i = 0; i < breathingSequence.length; i++) {
         opacity = opacity + (breathingSequence[i] / 100) * (flowMode.dob / 10);
