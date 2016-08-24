@@ -12,10 +12,10 @@ var delayPerPulse3 = timePerPulse / 15;
 var flowMode = {
     h: 23,
     s: 70,
-    l: 50,
+    l: 70,
     a: 0,
-    dob: 3,
-    dop: 2,
+    dob: 2,
+    dop: 1,
     bpm: 72,
     ppm: 13
 }
@@ -27,15 +27,9 @@ var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
-function getMode() {
-
-}
-
-function makeOpacitySequence() {
-    for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + (breathingSequence[i] / 100) * (flowMode.dob / 10);
-        opacitySequence[i] = opacity;
-    }
+function getSliderValue(slider) {
+    sliderValue = Number($(slider).value);
+    return sliderValue;
 }
 
 $(function() {
@@ -52,6 +46,15 @@ $(function() {
         //breathe();
     });
 });
+
+function makeOpacitySequence() {
+    for (var i = 0; i < breathingSequence.length; i++) {
+        opacity = opacity + (breathingSequence[i] / 100) * (flowMode.dob / 10);
+        opacitySequence[i] = opacity;
+    }
+}
+
+
 
 function breathe(curdex) {
     if (!curdex) curdex = 0;
