@@ -1,4 +1,4 @@
-var breathingSequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 var pulsePerMinute = 72; // heartrate
 var breathsPerMinute = 13; //Math.floor pulsePerMinute / 5); // breathing rate per minute
@@ -11,11 +11,11 @@ var delayPerPulse3 = timePerPulse / 15;
 
 var flowMode = {
     h: 23,
-    s: 70,
-    l: 70,
+    s: 45,
+    l: 75,
     a: 0,
-    dob: 2,
-    dop: 1,
+    dob: 1,
+    dop: 1.2,
     bpm: 72,
     ppm: 13
 }
@@ -34,31 +34,32 @@ function getSliderValue(slider) {
 
 $(function() {
     $('.slider').on('input', function() {
-        $("#dof").html(this.value);
+        $("#dob").html(this.value);
     });
 });
 
 $(function() {
-    $('.slider').on('change', function() {
-        var dof = Number(this.value);
-        makeOpacitySequence(dof);
-        //$.getScript("./flow.js");
-        //breathe();
-    });
-});
+    $('#s1').value = flowMode.dob;
+    $('#dob').html(flowMode.dob);
+})
 
-function makeOpacitySequence() {
+function makeOpacitySequence(dof) {
+    if (!dof) dof = flowMode.dob;
     for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + (breathingSequence[i] / 100) * (flowMode.dob / 10);
+        opacity = opacity + (breathingSequence[i] / 1000) * (dof);
         opacitySequence[i] = opacity;
     }
 }
 
-
-
 function breathe(curdex) {
     if (!curdex) curdex = 0;
     if (curdex >= breathingSequence.length) { curdex = 0; }
+    $(function() {
+        $('.slider').on('change', function() {
+            var dof = Number(this.value);
+            makeOpacitySequence(dof);
+        });
+    });
     var opac = opacitySequence[curdex];
     flowMode.a = opac;
     var hslaString = 'hsla(' +
