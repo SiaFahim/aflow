@@ -1,25 +1,24 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
+    "options_page": "popup.html",
+    "name": "AFLOW",
+    "description": "This extension makes the webpage breathe",
+    "version": "0.1",
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "css": ["styles.css"],
+        "js": ["jquery.js", "flow.js", "popup.js"]
+    }],
 
-  "name": "AFLOW",
-  "description": "This extension makes the webpage breathe",
-  "version": "0.1",
-    "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "css": ["styles.css"],
-      "js": ["jquery.js" , "flow.js" , "popup.js"]
-    }
-  ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_behaviour": "popup.js"
 
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_behaviour": "popup.js"
+    },
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/"
+    ]
 
-  },
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
 }

@@ -8,14 +8,13 @@ var delay = Math.floor(timePerBreath / breathingSequence.length);
 var delayPerPulse1 = timePerPulse / 15;
 var delayPerPulse2 = timePerPulse / 60;
 var delayPerPulse3 = timePerPulse / 15;
-
 var flowMode = {
     h: 23,
-    s: 25,
-    l: 80,
+    s: 55,
+    l: 40,
     a: 0,
-    dob: 5,
-    dop: 1.1,
+    dob: 0,
+    dop: 2,
     bpm: 72,
     ppm: 13
 }
@@ -27,26 +26,18 @@ var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
-function getSliderValue(slider) {
-    sliderValue = Number($(slider).value);
-    return sliderValue;
-}
-
 $(function() {
-    $('.slider').on('input', function() {
-        $("#dob").html(this.value);
+    $('#s5').on('input', function() {
+        var dob = Number(this.value);
+        $("#dob").html("depth of breath: " + (this.value));
+        makeOpacitySequence(dob);
     });
 });
 
-$(function() {
-    $('#s1').value = flowMode.dob;
-    $('#dob').html(flowMode.dob);
-})
-
-function makeOpacitySequence(dof) {
-    if (!dof) dof = flowMode.dob;
+function makeOpacitySequence(depth) {
+    if (!depth) depth = flowMode.dob;
     for (var i = 0; i < breathingSequence.length; i++) {
-        opacity = opacity + (breathingSequence[i] / 1000) * (dof);
+        opacity = opacity + (breathingSequence[i] / 1000) * (depth);
         opacitySequence[i] = opacity;
     }
 }
@@ -54,12 +45,6 @@ function makeOpacitySequence(dof) {
 function breathe(curdex) {
     if (!curdex) curdex = 0;
     if (curdex >= breathingSequence.length) { curdex = 0; }
-    $(function() {
-        $('.slider').on('change', function() {
-            var dof = Number(this.value);
-            makeOpacitySequence(dof);
-        });
-    });
     var opac = opacitySequence[curdex];
     flowMode.a = opac;
     var hslaString = 'hsla(' +
