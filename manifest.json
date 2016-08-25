@@ -7,7 +7,7 @@
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
         "css": ["styles.css"],
-        "js": ["jquery.js", "flow.js", "popup.js"]
+        "js": ["jquery.js", "jq.js", "flow.js", "popup.js"]
     }],
 
     "browser_action": {

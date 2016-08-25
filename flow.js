@@ -26,13 +26,7 @@ var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
-$(function() {
-    $('#s5').on('input', function() {
-        var dob = Number(this.value);
-        $("#dob").html("depth of breath: " + (this.value));
-        makeOpacitySequence(dob);
-    });
-});
+
 
 function makeOpacitySequence(depth) {
     if (!depth) depth = flowMode.dob;
