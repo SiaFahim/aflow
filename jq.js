@@ -19,7 +19,7 @@ $(Document).ready(function() {
     $(function() {
         $('#s3').on('input', function() {
             var light = Number(this.value);
-            $("#light").html("color saturation: " + (this.value));
+            $("#light").html("lightness: " + (this.value));
             flowMode.l = light;
         });
     });
