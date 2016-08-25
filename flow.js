@@ -11,11 +11,11 @@ var delayPerPulse3 = timePerPulse / 15;
 
 var flowMode = {
     h: 23,
-    s: 45,
-    l: 75,
+    s: 25,
+    l: 80,
     a: 0,
-    dob: 1,
-    dop: 1.2,
+    dob: 5,
+    dop: 1.1,
     bpm: 72,
     ppm: 13
 }
