@@ -55,10 +55,11 @@ function breathe(curdex) {
 
 //below is the code for heartBeat
 
-function makesaturationSequence() {
+function makesaturationSequence(depth) {
+     if (!depth) depth = flowMode.dop;
     var i;
     for (i = 0; i < 30; i++) {
-        saturation = saturation + heartBeatSequence[i] * flowMode.dop;
+        saturation = saturation + heartBeatSequence[i] * depth;
         saturationSequence[i] = saturation;
     }
     return saturationSequence;
