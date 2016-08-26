@@ -1,10 +1,23 @@
 $(Document).ready(function() {
 
+    function restore() {
+        chrome.storage.sync.get({
+            hue : 'hue'
+        }, 
+        function (hue) {
+            $(function() {
+                if(!items.hue)
+                $('#s1').value = items.hue;
+            })
+        }
+    )};
+
     $(function() {
         $('#s1').on('input', function() {
             var hue = Number(this.value);
             $("#hue").html("color hue: " + (this.value));
             flowMode.h = hue;
+            chrome.storage.sync.set({'hue': hue })
         });
     });
 
