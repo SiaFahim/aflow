@@ -13,20 +13,16 @@ var flowMode = {
     s: 55,
     l: 40,
     a: 0,
-    dob: 0,
+    dob: 2.5,
     dop: 2,
     bpm: 72,
     ppm: 13
 }
-
 var saturation = flowMode.s;
 var lightness = flowMode.l;
 var opacity = flowMode.a;
-
 var opacitySequence = [];
 var saturationSequence = [];
-
-
 
 function makeOpacitySequence(depth) {
     if (!depth) depth = flowMode.dob;
@@ -56,7 +52,7 @@ function breathe(curdex) {
 //below is the code for heartBeat
 
 function makesaturationSequence(depth) {
-     if (!depth) depth = flowMode.dop;
+    if (!depth) depth = flowMode.dop;
     var i;
     for (i = 0; i < 30; i++) {
         saturation = saturation + heartBeatSequence[i] * depth;

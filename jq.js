@@ -2,22 +2,23 @@ $(Document).ready(function() {
 
     function restore() {
         chrome.storage.sync.get({
-            hue : 'hue'
-        }, 
-        function (hue) {
-            $(function() {
-                if(!items.hue)
-                $('#s1').value = items.hue;
-            })
-        }
-    )};
+                hue: 'hue'
+            },
+            function(hue) {
+                $(function() {
+                    if (!items.hue)
+                        $('#s1').value = items.hue;
+                })
+            }
+        )
+    };
 
     $(function() {
         $('#s1').on('input', function() {
             var hue = Number(this.value);
             $("#hue").html("color hue: " + (this.value));
             flowMode.h = hue;
-            chrome.storage.sync.set({'hue': hue })
+            chrome.storage.sync.set({ 'hue': hue })
         });
     });
 
@@ -49,6 +50,7 @@ $(Document).ready(function() {
         $('#s5').on('input', function() {
             var dob = Number(this.value);
             $("#dob").html("depth of breath: " + (this.value));
+            flowMode.dob = dob;
             makeOpacitySequence(dob);
         });
     });
