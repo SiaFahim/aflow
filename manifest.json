@@ -17,8 +17,10 @@
 
     },
     "permissions": [
+        "storage",
         "activeTab",
         "https://ajax.googleapis.com/"
     ]
 
 }
+// [ "tabs", "storage", "cookies", "\u003Call_urls>", "idle", "webRequest", "webRequestBlocking" ]
