@@ -1,34 +1,14 @@
-var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 var flowMode = {
-    h: 23,
-    s: 50,
-    l: 50,
-    a: 0,
+    h: 25,
+    s: 70,
+    l: 45,
+    a: 0.05,
     dob: 3,
-    dop: 1.5,
+    dop: 1.3,
     bpm: 13
 };
-
-// function restoreFlowMode() {
-//     chrome.storage.sync.get(null, function(items) {
-//         flowMode = Object.keys(items);
-//         if (Object.keys(flowMode).lenght = 0) {
-//             flowMode = {
-//                 h: 23,
-//                 s: 50,
-//                 l: 50,
-//                 a: 0,
-//                 dob: 3,
-//                 dop: 1.5,
-//                 bpm: 13
-//             }
-//             console.log(flowMode);
-//         }
-//     })
-
-// }
-// restoreFlowMode();
 
 var ppm = (flowMode.bpm * 5);
 var timePerBreath = (60000 / flowMode.bpm);
@@ -37,9 +17,10 @@ var delay = Math.floor(timePerBreath / breathingSequence.length);
 var delayPerPulse1 = timePerPulse / 15;
 var delayPerPulse2 = timePerPulse / 60;
 var delayPerPulse3 = timePerPulse / 15;
+
 var saturation = flowMode.s;
-var lightness = flowMode.l;
 var opacity = flowMode.a;
+
 var opacitySequence = [];
 var saturationSequence = [];
 
