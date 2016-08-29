@@ -1,31 +1,37 @@
-var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
-var pulsePerMinute = 72; // heartrate
-var breathsPerMinute = 13; //Math.floor pulsePerMinute / 5); // breathing rate per minute
-var timePerBreath = (60000 / breathsPerMinute);
-var timePerPulse = (60000 / pulsePerMinute);
+
+var flowMode = {
+    h: 25,
+    s: 70,
+    l: 45,
+    a: 0.02,
+    dob: 3,
+    dop: 1,
+    bpm: 12
+};
+
+var ppm = (flowMode.bpm * 5);
+var timePerBreath = (60000 / flowMode.bpm);
+var timePerPulse = (60000 / ppm);
 var delay = Math.floor(timePerBreath / breathingSequence.length);
 var delayPerPulse1 = timePerPulse / 15;
 var delayPerPulse2 = timePerPulse / 60;
 var delayPerPulse3 = timePerPulse / 15;
-var flowMode = {
-    h: 23,
-    s: 55,
-    l: 40,
-    a: 0,
-    dob: 2.5,
-    dop: 2,
-    bpm: 72,
-    ppm: 13
-}
 var saturation = flowMode.s;
-var lightness = flowMode.l;
 var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
+chrome.storage.sync.get("dob", function(object) {
+    flowMode.dob = object.dob;
+    $("#dob").html("depth of breath: " + flowMode.dob);
+    makeOpacitySequence(flowMode.dob);
+})
+
 function makeOpacitySequence(depth) {
     if (!depth) depth = flowMode.dob;
+    console.log(depth);
     for (var i = 0; i < breathingSequence.length; i++) {
         opacity = opacity + (breathingSequence[i] / 1000) * (depth);
         opacitySequence[i] = opacity;
@@ -102,7 +108,8 @@ makesaturationSequence();
 setInterval(doHeartbeat, getHeartbeatLength());
 doHeartbeat();
 
-makeOpacitySequence();
+
+//makeOpacitySequence(dob);
 breathe();
 
 
