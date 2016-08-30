@@ -1,17 +1,14 @@
 var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
-
 var flowMode = {
-    h: 25,
-    s: 70,
-    l: 45,
+    h: 19,
+    s: 65,
+    l: 50,
     a: 0.02,
-    dob: 3,
-    dop: 1,
-    bpm: 12
+    dop: 1.1
 };
 
-var ppm = (flowMode.bpm * 5);
+var ppm = (67);
 var timePerBreath = (60000 / flowMode.bpm);
 var timePerPulse = (60000 / ppm);
 var delay = Math.floor(timePerBreath / breathingSequence.length);
@@ -22,10 +19,28 @@ var saturation = flowMode.s;
 var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
+var heart = true;
+
+chrome.storage.sync.get("heart", function(object) {
+    heart = object.heart;
+    doHeartbeat();
+})
+
+function getDelay(rate) {
+    delay = Math.floor((60000 / rate) / breathingSequence.length);
+}
+
+chrome.storage.sync.get("bpm", function(object) {
+    flowMode.bpm = object.bpm;
+    $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
+    $("#s7").val(flowMode.bpm);
+    getDelay(flowMode.bpm)
+})
 
 chrome.storage.sync.get("dob", function(object) {
     flowMode.dob = object.dob;
     $("#dob").html("depth of breath: " + flowMode.dob);
+    $("#s5").val(flowMode.dob);
     makeOpacitySequence(flowMode.dob);
 })
 
@@ -86,21 +101,23 @@ function getHeartbeatLength() {
 }
 
 function doHeartbeat(curdex) {
-    if (!curdex) curdex = 0;
-    var sat = saturationSequence[curdex];
-    var delay = getHeartbeatDelay(curdex);
-    if (sat) {
-        flowMode.s = sat;
-        var hslaString = 'hsla(' +
-            flowMode.h + ', ' +
-            flowMode.s + '%,' +
-            flowMode.l + '%,' +
-            flowMode.a + ')';
-        $('#mainBreather').css('background-color', hslaString);
-        curdex++;
-        setTimeout(function() {
-            doHeartbeat(curdex);
-        }, delay);
+    if (heart == true) {
+        if (!curdex) curdex = 0;
+        var sat = saturationSequence[curdex];
+        var delay = getHeartbeatDelay(curdex);
+        if (sat) {
+            flowMode.s = sat;
+            var hslaString = 'hsla(' +
+                flowMode.h + ', ' +
+                flowMode.s + '%,' +
+                flowMode.l + '%,' +
+                flowMode.a + ')';
+            $('#mainBreather').css('background-color', hslaString);
+            curdex++;
+            setTimeout(function() {
+                doHeartbeat(curdex);
+            }, delay);
+        }
     }
 }
 
