@@ -7,21 +7,7 @@
     <script type="text/javascript" src="./jquery.js"></script>
     <script type="text/javascript" src="./jq.js"></script>
     <script type="text/javascript" src="./flow.js"></script>
-    <script type="text/javascript">
-        chrome.storage.sync.get("bpm", function(object) {
-            flowMode.bpm = object.bpm;
-            $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
-            $("#s7").val(flowMode.bpm);
-            getDelay(flowMode.bpm)
-        })
 
-        chrome.storage.sync.get("dob", function(object) {
-            flowMode.dob = object.dob;
-            $("#dob").html("depth of breath: " + flowMode.dob);
-            $("#s5").val(flowMode.dob);
-            makeOpacitySequence(flowMode.dob);
-        })
-    </script>
     <title>FLOW</title>
 
     <!-- These links are for material design library !-->
@@ -61,6 +47,10 @@
                 <input class="mdl-slider mdl-js-slider slider" type="range" id="s7" min="3" max="20" value="12" tabindex="0" step="1">
                 <span id="bpm">breath per minute: 12</span>
             </p>
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="heart">
+             <i class="material-icons">favorite</i>
+            </button>
         </div>
     </main>
     </div>
