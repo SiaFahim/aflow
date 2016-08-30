@@ -23,9 +23,21 @@ var opacity = flowMode.a;
 var opacitySequence = [];
 var saturationSequence = [];
 
+function getDelay(rate) {
+    delay = Math.floor((60000 / rate) / breathingSequence.length);
+}
+
+chrome.storage.sync.get("bpm", function(object) {
+    flowMode.bpm = object.bpm;
+    $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
+    $("#s7").val(flowMode.bpm);
+    getDelay(flowMode.bpm)
+})
+
 chrome.storage.sync.get("dob", function(object) {
     flowMode.dob = object.dob;
     $("#dob").html("depth of breath: " + flowMode.dob);
+    $("#s5").val(flowMode.dob);
     makeOpacitySequence(flowMode.dob);
 })
 
@@ -104,9 +116,9 @@ function doHeartbeat(curdex) {
     }
 }
 
-makesaturationSequence();
-setInterval(doHeartbeat, getHeartbeatLength());
-doHeartbeat();
+// makesaturationSequence();
+// setInterval(doHeartbeat, getHeartbeatLength());
+// doHeartbeat();
 
 
 //makeOpacitySequence(dob);
