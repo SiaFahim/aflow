@@ -3,11 +3,10 @@ var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1
 var flowMode = {
     h: 19,
     s: 65,
-    l: 50,
-    a: 0.02,
+    l: 55,
+    a: 0.05,
     dop: 1.1
 };
-
 var ppm = (67);
 var timePerBreath = (60000 / flowMode.bpm);
 var timePerPulse = (60000 / ppm);
@@ -31,6 +30,7 @@ function getDelay(rate) {
 }
 
 chrome.storage.sync.get("bpm", function(object) {
+    if (!flowMode.bpm) flowMode.bpm = 13;
     flowMode.bpm = object.bpm;
     $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
     $("#s7").val(flowMode.bpm);
@@ -38,6 +38,7 @@ chrome.storage.sync.get("bpm", function(object) {
 })
 
 chrome.storage.sync.get("dob", function(object) {
+    if (flowMode.dob) flowMode.dob = 3;
     flowMode.dob = object.dob;
     $("#dob").html("depth of breath: " + flowMode.dob);
     $("#s5").val(flowMode.dob);
