@@ -1,0 +1,54 @@
+.flow-control {
+    overflow: auto;
+    background-image: url("/assets/flowBG.png");
+    background-size: 795px 413px;
+    margin: auto;
+    width: 794px;
+    height: 411px;
+    /*margin-top: px;*/
+}
+
+.heart-slider {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#heart {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    height: 42px;
+    width: 42px;
+}
+
+#slide1 {
+    width: 656px;
+    margin-top: 5px;
+    margin-left: 70px;
+}
+
+#slide2 {
+    width: 656px;
+    margin-top: 0px;
+    margin-left: 70px;
+}
+
+#dob {
+    margin-top: 137px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#bpm {
+    margin-top: 25px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#heartBeat {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}

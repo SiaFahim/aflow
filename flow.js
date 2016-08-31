@@ -32,16 +32,16 @@ function getDelay(rate) {
 chrome.storage.sync.get("bpm", function(object) {
     if (!flowMode.bpm) flowMode.bpm = 13;
     flowMode.bpm = object.bpm;
-    $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
-    $("#s7").val(flowMode.bpm);
+    $("#bpm").html("BREATH PER MIN: " + flowMode.bpm);
+    $("#s2").val(flowMode.bpm);
     getDelay(flowMode.bpm)
 })
 
 chrome.storage.sync.get("dob", function(object) {
     if (flowMode.dob) flowMode.dob = 3;
     flowMode.dob = object.dob;
-    $("#dob").html("depth of breath: " + flowMode.dob);
-    $("#s5").val(flowMode.dob);
+    $("#dob").html("VISIBILITY");
+    $("#s1").val(flowMode.dob);
     makeOpacitySequence(flowMode.dob);
 })
 

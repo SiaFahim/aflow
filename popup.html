@@ -14,46 +14,32 @@
 
     <link rel="stylesheet" href="./material.min.css">
     <script src="./material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.amber-deep_orange.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
 </head>
 
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <!--<div class="mdl-layout__header-row">-->
-            <!-- Title -->
-            <span class="mdl-layout-title" style="margin:20px 0 0 10px;">FLOW</span>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">Link</a>
-            </nav>
-    </div>
+
+    <header>
+
     </header>
 
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">FLOW</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-        </nav>
-    </div>
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <p style="width:500px; margin-top:100px">
-                <input class="mdl-slider mdl-js-slider slider" type="range" id="s5" min="0" max="7" value="" tabindex="0" step="0.1">
-                <span id="dob">depth of breath: </span>
-                <input class="mdl-slider mdl-js-slider slider" type="range" id="s7" min="3" max="20" value="" tabindex="0" step="1">
-                <span id="bpm">breath per minute: </span>
-            </p>
+    <div class="flow-control">
+        <p id="dob">VISIBILITY</p>
+        <p class="heart-slider" id="slide1">
+            <input class="mdl-slider mdl-js-slider slider1" type="range" id="s1" min="0" max="7" value="" tabindex="0" step="0.1">
 
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="heart">
-             <i class="material-icons">favorite</i>
-            </button>
-        </div>
-    </main>
+        </p>
+        <p id="bpm">BREATH PER MIN</p>
+        <p class="heart-slider" id="slide2">
+            <input class="mdl-slider mdl-js-slider slider2" type="range" id="s2" min="3" max="20" value="" tabindex="0" step="1">
+
+        </p>
+        <p id="heartBeat">HEART BEAT (ON/OFF)</p>
+        <img src="/assets/heartbeating.gif" id="heart">
     </div>
+
 
 </body>
 
