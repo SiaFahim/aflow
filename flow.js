@@ -4,7 +4,7 @@ var flowMode = {
     h: 19,
     s: 65,
     l: 55,
-    a: 0.05,
+    a: 0.02,
     dop: 1.1
 };
 var ppm = (67);
