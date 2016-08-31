@@ -25,10 +25,12 @@ $(Document).ready(function() {
         $('#heart').on('click', function() {
             if (heart == true) {
                 chrome.storage.sync.set({ 'heart': false }, function() {
+                    $('#heart').src("/assets/epmtyHeart.png");
                     heart = false;
                 })
             } else {
                 chrome.storage.sync.set({ 'heart': true }, function() {
+                    $('#heart').src("/assets/beatingHeart.png");
                     heart = true;
                 })
             }

@@ -5,7 +5,7 @@ var flowMode = {
     s: 65,
     l: 55,
     a: 0.02,
-    dop: 1.1
+    dop: 2
 };
 var ppm = (67);
 var timePerBreath = (60000 / flowMode.bpm);
@@ -21,6 +21,7 @@ var saturationSequence = [];
 var heart = true;
 
 chrome.storage.sync.get("heart", function(object) {
+    // document.getElementById("heart").src = "/assets/epmtyHeart.png";
     heart = object.heart;
     doHeartbeat();
 })
