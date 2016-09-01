@@ -37,5 +37,20 @@ $(Document).ready(function() {
 
         })
 
+        $('.heart').on('click', function() {
+            if (heart == true) {
+                chrome.storage.sync.set({ 'heart': false }, function() {
+                    $('.heart').removeClass('is-beating');
+                    heart = false;
+                })
+            } else {
+                chrome.storage.sync.set({ 'heart': true }, function() {
+                    $('.heart').addClass('is-beating');
+                    heart = true;
+                })
+            }
+
+        })
+
     })
 });

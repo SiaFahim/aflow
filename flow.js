@@ -2,10 +2,10 @@ var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 var flowMode = {
     h: 19,
-    s: 65,
+    s: 60,
     l: 55,
     a: 0.02,
-    dop: 2
+    dop: 1.1
 };
 var ppm = (67);
 var timePerBreath = (60000 / flowMode.bpm);
