@@ -2,9 +2,9 @@ var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 var flowMode = {
     h: 19,
-    s: 65,
+    s: 60,
     l: 55,
-    a: 0.05,
+    a: 0.02,
     dop: 1.1
 };
 var ppm = (67);
@@ -21,6 +21,7 @@ var saturationSequence = [];
 var heart = true;
 
 chrome.storage.sync.get("heart", function(object) {
+    // document.getElementById("heart").src = "/assets/epmtyHeart.png";
     heart = object.heart;
     doHeartbeat();
 })
@@ -32,16 +33,16 @@ function getDelay(rate) {
 chrome.storage.sync.get("bpm", function(object) {
     if (!flowMode.bpm) flowMode.bpm = 13;
     flowMode.bpm = object.bpm;
-    $("#bpm").html("Breaths Per Minute: " + flowMode.bpm);
-    $("#s7").val(flowMode.bpm);
+    $("#bpm").html("BREATH PER MIN: " + flowMode.bpm);
+    $("#s2").val(flowMode.bpm);
     getDelay(flowMode.bpm)
 })
 
 chrome.storage.sync.get("dob", function(object) {
     if (flowMode.dob) flowMode.dob = 3;
     flowMode.dob = object.dob;
-    $("#dob").html("depth of breath: " + flowMode.dob);
-    $("#s5").val(flowMode.dob);
+    $("#dob").html("VISIBILITY");
+    $("#s1").val(flowMode.dob);
     makeOpacitySequence(flowMode.dob);
 })
 
