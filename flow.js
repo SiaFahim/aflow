@@ -1,11 +1,11 @@
 var breathingSequence = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1];
 var flowMode = {
-    h: 19,
+    h: 25,
     s: 60,
-    l: 55,
+    l: 60,
     a: 0.02,
-    dop: 1.1
+    dop: 1.2
 };
 var ppm = (67);
 var timePerBreath = (60000 / flowMode.bpm);
@@ -39,7 +39,7 @@ chrome.storage.sync.get("bpm", function(object) {
 })
 
 chrome.storage.sync.get("dob", function(object) {
-    if (flowMode.dob) flowMode.dob = 3;
+    if (!flowMode.dob) flowMode.dob = 3;
     flowMode.dob = object.dob;
     $("#dob").html("VISIBILITY");
     $("#s1").val(flowMode.dob);
@@ -48,7 +48,6 @@ chrome.storage.sync.get("dob", function(object) {
 
 function makeOpacitySequence(depth) {
     if (!depth) depth = flowMode.dob;
-    console.log(depth);
     for (var i = 0; i < breathingSequence.length; i++) {
         opacity = opacity + (breathingSequence[i] / 1000) * (depth);
         opacitySequence[i] = opacity;

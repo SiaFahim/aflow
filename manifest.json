@@ -1,9 +1,9 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 0.1,
     "options_page": "popup.html",
     "name": "AFLOW",
     "description": "This extension makes the webpage breathe",
-    "version": "0.1",
+    "version": "0.0.0.1",
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
         "css": ["styles.css"],
