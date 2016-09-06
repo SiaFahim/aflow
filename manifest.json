@@ -1,5 +1,5 @@
 {
-    "manifest_version": 0.1,
+    "manifest_version": 1,
     "options_page": "popup.html",
     "name": "AFLOW",
     "description": "This extension makes the webpage breathe",
