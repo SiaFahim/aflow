@@ -20,31 +20,9 @@ var opacitySequence = [];
 var saturationSequence = [];
 var heart = true;
 
-chrome.storage.sync.get("heart", function(object) {
-    // document.getElementById("heart").src = "/assets/epmtyHeart.png";
-    heart = object.heart;
-    doHeartbeat();
-})
-
 function getDelay(rate) {
     delay = Math.floor((60000 / rate) / breathingSequence.length);
 }
-
-chrome.storage.sync.get("bpm", function(object) {
-    if (!flowMode.bpm) flowMode.bpm = 13;
-    flowMode.bpm = object.bpm;
-    $("#bpm").html("BREATH PER MIN: " + flowMode.bpm);
-    $("#s2").val(flowMode.bpm);
-    getDelay(flowMode.bpm)
-})
-
-chrome.storage.sync.get("dob", function(object) {
-    if (!flowMode.dob) flowMode.dob = 3;
-    flowMode.dob = object.dob;
-    $("#dob").html("VISIBILITY");
-    $("#s1").val(flowMode.dob);
-    makeOpacitySequence(flowMode.dob);
-})
 
 function makeOpacitySequence(depth) {
     if (!depth) depth = flowMode.dob;
