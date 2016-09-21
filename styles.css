@@ -8,6 +8,22 @@
     /*margin-top: px;*/
 }
 
+.options {
+    overflow: auto;
+    background-image: url("/assets/flowBG.png");
+    background-size: 635px 330px;
+    margin: auto;
+    width: 635px;
+    height: 330px;
+}
+
+.options-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #2B251A;
+}
+
 .heart-slider {
     font-family: 'Roboto', sans-serif;
     text-align: center;

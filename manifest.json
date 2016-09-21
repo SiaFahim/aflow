@@ -1,11 +1,11 @@
 {
     "manifest_version": 2,
-    "options_page": "popup.html",
+    "options_page": "options.html",
     "name": "beta FLOW",
     "short_name": "flow",
     "description": "This extension makes the webpage breathe",
-    "version": "0.0.1",
-    "version_name": "1.0 beta",
+    "version": "0.0.0.1",
+    "version_name": "beta",
     "offline_enabled": true,
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
