@@ -20,7 +20,7 @@ $(Document).ready(function() {
         })
 
         chrome.storage.local.get("dob", function(object) {
-            if (!flowMode.dob) flowMode.dob = 3;
+            if (!flowMode.dob) flowMode.dob = 7;
             flowMode.dob = object.dob;
             $("#dob").html("VISIBILITY");
             $("#s1").val(flowMode.dob);
