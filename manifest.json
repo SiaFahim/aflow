@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "options_page": "options.html",
-    "name": "beta FLOW",
+    "name": "FLOW",
     "short_name": "flow",
     "description": "This extension makes the webpage breathe",
     "version": "0.0.0.3",
