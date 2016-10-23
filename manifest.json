@@ -4,7 +4,7 @@
     "name": "FLOW",
     "short_name": "flow",
     "description": "This extension makes the webpage breathe",
-    "version": "0.0.0.4",
+    "version": "0.0.0.5",
     "version_name": "beta",
     "offline_enabled": true,
     "content_scripts": [{

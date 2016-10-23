@@ -12,7 +12,7 @@ $(Document).ready(function() {
         })
 
         chrome.storage.local.get("bpm", function(object) {
-            if (!flowMode.bpm) flowMode.bpm = 13;
+            if (!flowMode.bpm) flowMode.bpm = 10;
             flowMode.bpm = object.bpm;
             $("#bpm").html("BREATH PER MIN: " + flowMode.bpm);
             $("#s2").val(flowMode.bpm);
@@ -20,7 +20,7 @@ $(Document).ready(function() {
         })
 
         chrome.storage.local.get("dob", function(object) {
-            if (!flowMode.dob) flowMode.dob = 7;
+            if (!flowMode.dob) flowMode.dob = 5;
             flowMode.dob = object.dob;
             $("#dob").html("VISIBILITY");
             $("#s1").val(flowMode.dob);
