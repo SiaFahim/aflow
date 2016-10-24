@@ -3,7 +3,7 @@ var heartBeatSequence = [0, 1, -2, -1, -1, 2, 1, 1, 1, 1, 1, 1, 1, 2, -2, -1, -1
 var flowMode = {
     h: 13,
     s: 1,
-    l: 53,
+    l: 43,
     a: 0,
     dop: 1.01
 };
